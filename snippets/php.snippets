@@ -1,0 +1,20 @@
+snippet <? "<?php"
+	<?php
+
+	${0:${VISUAL}}
+snippet for "for ($i = 0; $i < $count; $i++) { ... }"
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+		${0:${VISUAL}}
+	}
+snippet foreach "foreach ($var as $value) { .. }"
+	foreach ($${1:variable} as $${2:value}) {
+		${0:${VISUAL}}
+	}
+snippet vd "var_dump()"
+	var_dump(${0:${VISUAL}});
+snippet vdd "var_dump();die;"
+	var_dump(${0:${VISUAL}});die;
+snippet d "dump()"
+	dump(${0:${VISUAL}});
+snippet dd "dd()"
+	dd(${0:${VISUAL}});

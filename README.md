@@ -71,7 +71,7 @@ nvim-venci --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 - Com LSP configurado: Use `gd`, `gr`, `<space>ca`, `K` e `KK` (para sair da janela de `KK` utilize `q`)
 - Feche arquivos/buffers/tabs `<space>df`
 - Mantenha somente um arquivo/buffer/tab `<space>ds`
-- Comente/descomente código com `gc` - adicione *commentstring* em `vimrc` caso não exista do seu tipo de arquivo
+- Comente/descomente código com `gcc`
 - Use git com `<space>gg`
     - `=` diff
     - `-` stage/unstage em todo ou partes de um arquivo

@@ -141,32 +141,6 @@ function! NN_GitAula()
   bdelete!
 endfunction
 
-function! s:ToggleComment()
-  if getline('.') =~ "^\\s*$"
-    return
-  endif
-
-  let commentstrings = split(&commentstring, ',')
-
-  " handle multiple uncomments formats
-  for commentstring in commentstrings
-    let [comment_leader1, comment_leader2] = split(commentstring, '%s', 1)
-    let comment_leader1 = substitute(comment_leader1, ' ', '', 'g')
-    let comment_leader2 = substitute(comment_leader2, ' ', '', 'g')
-    if getline('.') =~ "^\\s*" . comment_leader1
-      call setline('.', substitute(getline('.'), "^\\(\\s*\\)" . comment_leader1 . "\\(\\s*\\)", "\\1", 'g'))
-      call setline('.', substitute(getline('.'), "\\(\\s*\\)" . comment_leader2 . "\\(\\s*\\)$", "", 'g'))
-      return
-    end
-  endfor
-
-  " Comment
-  let first_commentstring = commentstrings[0]
-  let [comment_leader1, comment_leader2] = split(first_commentstring, '%s', 1)
-  call setline('.', substitute(getline('.'), "^\\(\\s*\\)", "\\1" . comment_leader1, 'g'))
-  call setline('.', substitute(getline('.'), "$", "\\1" . comment_leader2, 'g'))
-endfunction
-
 function! s:FechaOuDeletaBuffer()
   if tabpagenr('$') > 1 || winnr('$') > 1
     close
@@ -185,7 +159,6 @@ command! BufOnly execute 'kb|%bdelete|e #|b#|bd%|normal `b'
 let mapleader="\<space>"
 
 nnoremap    <leader><leader>    :w<CR>
-nnoremap    <leader><CR>        :call NN_Lexplorer()<CR>
 nnoremap    <leader>/           :noh<CR>
 nnoremap    <leader>.           :pwd<CR>
 nnoremap    <leader>df          :call <SID>FechaOuDeletaBuffer()<CR>
@@ -213,8 +186,6 @@ nnoremap    !!          :!!<CR>|" repete ultimo :!comando
 "nnoremap    #           :b #<CR>
 vnoremap    <           <gv|" mantêm select após indentação
 vnoremap    >           >gv|" mantêm select após indentação
-nnoremap    gc          :call <SID>ToggleComment()<CR>
-vnoremap    gc          :call <SID>ToggleComment()<CR>
 vnoremap    J           :m '>+1<CR>gv=gv|" move linha selecionada pra baixo
 vnoremap    K           :m '<-2<CR>gv=gv|" move linha selecionada pra cima
 "inoremap    kj          <esc>|" esc mais fácil
@@ -284,10 +255,4 @@ augroup filetype_detect
   au BufRead,BufNewFile *.phtml setfiletype html
   au BufRead,BufNewFile *.gv setfiletype dot
   au BufRead,BufNewFile *.todone setfiletype todone
-augrou END
-
-augroup commentstring
-  au!
-  au FileType php setlocal commentstring=#\ %s,//\ %s,/\\*\ %s\ \\*/
-  au FileType html setlocal commentstring=<!--\ %s\ -->
 augrou END

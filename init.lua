@@ -90,7 +90,6 @@ require('packer').startup(function(use)
 
   use {
     'nvim-tree/nvim-tree.lua',
-    tag = 'nightly',
     config = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
@@ -106,11 +105,6 @@ require('packer').startup(function(use)
         sort_by = "case_sensitive",
         view = {
           adaptive_size = true,
-          mappings = {
-            list = {
-              { key = "u", action = "dir_up" },
-            },
-          },
           float = {
             enable = true,
             quit_on_focus_loss = true,
@@ -148,8 +142,8 @@ require('packer').startup(function(use)
             },
           },
         },
-        filters = {
-          dotfiles = false,
+        git = {
+          enable = false,
         },
       }
     end,

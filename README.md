@@ -8,7 +8,7 @@ Sugestão de primeira configuração amigável e eficiente, ideal para interessa
 
 ## Pré-requisitos
 
-- Neovim
+- Neovim (talvez o [nightly](https://github.com/neovim/neovim/releases/tag/nightly) seja obrigatório por alguns plugins)
 - `xclip`
 - `ripgrep`
 
